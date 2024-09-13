@@ -1,0 +1,138 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<style>
+    {
+        font-family: Agency FB, Tahoma, Arial, Calibri;
+        color: rgb(6, 101, 49);
+      }
+    
+      .container {
+        max-width: 200%;
+        margin: 20px auto;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 30px;
+        align-items: center;
+      }
+    
+    
+      .form-section {
+        border-radius: 20px;
+      }
+    
+      h4 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #C00000;
+        
+      }
+    
+      /* Form Layout */
+      form {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 200px;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+      }
+    
+      form .form-group {
+        display: block;
+        flex-direction: column;
+      }
+    
+      input[type="text"],
+      input[type="date"],
+      input[type="number"],
+      input[type="email"],
+      select {
+        margin-bottom: 10px;
+        width: 150%;
+        border: 2px solid darkgray;
+        padding: 5px;
+        border-radius: 10px;
+      }
+    
+      input:valid,
+      select:valid {
+        border: 2px solid green;
+      }
+    
+      .asteriskField {
+        color: #FF0000;
+      }
+    
+      button[type="submit"] {
+        grid-column: span 2; /* Takes full width */
+        background-color: red;
+        color: white;
+        border: 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        padding: 10px 20px;
+        transition: background-color 0.8s, color 0.7s;
+        font-family: sans-serif;
+        text-align: right;
+      }
+    
+      button[type="submit"]:hover {
+        background-color: rgba(255, 166, 0, 0.242);
+      }
+    
+      .alert {
+        background-color: #4caf50;
+        width: 35%;
+        margin: 10px auto;
+      }
+    
+</style>
+
+<!-- Image Section -->
+<div class="image-section">
+    <img src="{% static 'images/Header.PNG' %}" alt="Your Image" style="max-width: 1000px; border-radius: 10px; height: 50px; padding-top: 40px position: top;">
+</div>
+<div class="container">
+    <form method="POST" class='babe-form'>
+        {% csrf_token %}
+        <div class="form-row">
+            <h4>PASSANGER INFORMATION</h4>
+            <hr>
+            {{form.full_name|as_crispy_field}}
+            {{form.gender|as_crispy_field}}
+            {{form.date_of_birth|as_crispy_field}}
+            {{form.nationality|as_crispy_field}}
+             </div>
+             <div class="form-row">
+                <h4>CONTACT INFORMATION</h4>
+                <hr>
+                {{form.phone_number|as_crispy_field}}
+                {{form.email_address|as_crispy_field}}
+                {{form.P_O_box_number|as_crispy_field}}
+                {{form.emergency_phone_number|as_crispy_field}}
+                 </div>
+                    <div class="form-row">
+                      <h4>FLIGHT INFORMATION</h4>
+                      <hr>
+                      {{form.passport_number|as_crispy_field}}
+                      {{form.visa_document|as_crispy_field}}
+                      {{form.departure_city|as_crispy_field}}
+                      {{form.destination_city|as_crispy_field}}
+                      </div>
+                      <button type="submit" class="btn btn-primary" style="width: 100px; align-items: center;">SUBMIT</button>
+                      {% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+
+    </form>
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
